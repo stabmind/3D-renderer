@@ -14,20 +14,10 @@
 namespace application {
 
 class Renderer {
-public:
-  using SpaceCoordsType = renderer_types::SpaceCoordsType;
+ public:
   using ScreenCoordsType = Screen::ScreenCoordsType;
-  using ColorType = renderer_types::ColorType;
   using TriangleVec = World::TriangleVec;
   using PointVec_2d = std::vector<Eigen::Vector2d>;
-
-private:
-  struct Vertex {
-    Eigen::Vector3d point;
-    ColorType color;
-  };
-
-public:
   using VertexVec = std::vector<Vertex>;
 
   Renderer();
@@ -38,12 +28,13 @@ public:
   void setWireframeVisible(bool is_visible);
   void setWireframeColor(const ColorType &color);
 
-private:
+ private:
   void PrepareRenderer(Screen *screen);
   void PrepareRasterization(void);
 
-  void ViewTransform(const Camera &camera, Triangle *p_triangle) const;
-  void ProjectionTransform(const Camera &camera, Triangle *p_triangle) const;
+  void MakeViewTransformation(const Camera &camera, Triangle *p_triangle) const;
+  void MakeProjectionTransformation(const Camera &camera,
+                                    Triangle *p_triangle) const;
   void Clip(const Triangle &triangle, const PointVec_2d &poly_2d,
             TriangleVec *p_triangles) const noexcept;
   void Rasterize(const Triangle &triangle, Screen *p_screen) noexcept;
@@ -52,11 +43,10 @@ private:
                       TriangleVec *p_triangles) const;
   void FrustumClip_yz(const Camera &camera, const Triangle &triangle,
                       TriangleVec *p_triangles) const;
-  void SquareClip(const Triangle &triangle, TriangleVec *p_triangles);
 
-  std::vector<int>
-  SelectPointsInPolygon_2d(const PointVec_2d &inner_poly,
-                           const PointVec_2d &outer_poly) const noexcept;
+  std::vector<int> SelectPointsInPolygon_2d(
+      const PointVec_2d &inner_poly,
+      const PointVec_2d &outer_poly) const noexcept;
 
   void IntersectPolygons_2d(const Triangle &triangle,
                             const PointVec_2d &triangle_2d,
@@ -85,13 +75,13 @@ private:
   // clang-format on
   void RasterizeTriangle(const Triangle &triangle, Screen *p_screen) noexcept;
 
-  void getScreenCoords(const Eigen::Vector3d &p, ScreenCoordsType *x,
+  void getScreenCoords(const Vector3d &p, ScreenCoordsType *x,
                        ScreenCoordsType *y, SpaceCoordsType *z) const;
-  Eigen::Vector3d FitPoint(const Eigen::Vector3d &p) const;
+  Vector3d FitPoint(const Vector3d &p) const;
 
   const ColorType kBrownColor_ = ColorType(150, 75, 0);
 
-  static constexpr SpaceCoordsType kEPS_ = 1e-12;
+  static constexpr SpaceCoordsType kEPS_ = 1e-9;
 
   Screen::SizeType w_, h_;
   std::vector<ScreenCoordsType> vmin_x_, vmax_x_;
@@ -103,4 +93,4 @@ private:
   ColorType wireframe_color_;
 };
 
-} // namespace application
+}  // namespace application

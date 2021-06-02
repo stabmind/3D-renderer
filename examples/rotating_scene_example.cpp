@@ -1,37 +1,31 @@
 #include "application.h"
-#include "screen.h"
-#include "triangle.h"
 
-#include "Eigen/Dense"
-
-using application::Application;
-using application::Screen;
-using application::Triangle;
+using namespace application;
 
 void AddCube(Application *p_app) {
-  Eigen::Vector3d v1(-2, -2, 2);
-  Screen::ColorType c1(0, 0, 255);
+  Vector3d v1(-2, -2, 2);
+  ColorType c1(0, 0, 255);
 
-  Eigen::Vector3d v2(2, -2, 2);
-  Screen::ColorType c2(255, 0, 0);
+  Vector3d v2(2, -2, 2);
+  ColorType c2(255, 0, 0);
 
-  Eigen::Vector3d v3(2, 2, 2);
-  Screen::ColorType c3(255, 0, 0);
+  Vector3d v3(2, 2, 2);
+  ColorType c3(255, 0, 0);
 
-  Eigen::Vector3d v4(-2, 2, 2);
-  Screen::ColorType c4(0, 0, 255);
+  Vector3d v4(-2, 2, 2);
+  ColorType c4(0, 0, 255);
 
-  Eigen::Vector3d v5(-2, -2, -2);
-  Screen::ColorType c5(255, 0, 255);
+  Vector3d v5(-2, -2, -2);
+  ColorType c5(255, 0, 255);
 
-  Eigen::Vector3d v6(2, -2, -2);
-  Screen::ColorType c6(255, 255, 0);
+  Vector3d v6(2, -2, -2);
+  ColorType c6(255, 255, 0);
 
-  Eigen::Vector3d v7(2, 2, -2);
-  Screen::ColorType c7(255, 255, 0);
+  Vector3d v7(2, 2, -2);
+  ColorType c7(255, 255, 0);
 
-  Eigen::Vector3d v8(-2, 2, -2);
-  Screen::ColorType c8(0, 255, 0);
+  Vector3d v8(-2, 2, -2);
+  ColorType c8(0, 255, 0);
 
   // back
   Triangle B1(v5, c5, v6, c6, v7, c7);
@@ -61,20 +55,20 @@ void AddCube(Application *p_app) {
 }
 
 void AddPyramid(Application *p_app) {
-  Eigen::Vector3d v1(-4, 2, -2);
-  Screen::ColorType c1(0, 255, 0);
+  Vector3d v1(-4, 2, -2);
+  ColorType c1(0, 255, 0);
 
-  Eigen::Vector3d v2(4, 2, -2);
-  Screen::ColorType c2(255, 255, 0);
+  Vector3d v2(4, 2, -2);
+  ColorType c2(255, 255, 0);
 
-  Eigen::Vector3d v3(-4, 2, 2);
-  Screen::ColorType c3(0, 0, 255);
+  Vector3d v3(-4, 2, 2);
+  ColorType c3(0, 0, 255);
 
-  Eigen::Vector3d v4(4, 2, 2);
-  Screen::ColorType c4(255, 0, 0);
+  Vector3d v4(4, 2, 2);
+  ColorType c4(255, 0, 0);
 
-  Eigen::Vector3d v5(0, 4, 0);
-  Screen::ColorType c5(0, 255, 255);
+  Vector3d v5(0, 4, 0);
+  ColorType c5(0, 255, 255);
 
   // bottom
   Triangle B1(v1, c1, v2, c2, v3, c3);

@@ -28,4 +28,4 @@ World::TriangleVec::const_iterator World::end() const {
   return triangles_.end();
 }
 
-} // namespace application
+}  // namespace application

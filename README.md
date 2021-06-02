@@ -10,7 +10,7 @@
 
 ### Инструкция
 
-В папке `examples` корневой директории располагаются два исходника, которые демонстрируют примеры использования библиотеки. Чтобы собрать проект на операционной системе `Linux`, нужно выполнить в терминале следующую последовательность команд:
+В папке `examples` корневой директории располагаются три исходника, которые демонстрируют примеры использования библиотеки. Чтобы собрать проект на операционной системе `Linux`, нужно выполнить в терминале следующую последовательность команд:
 
 ```bash
 git clone --recurse-submodules https://github.com/stabmind/3D-renderer.git
@@ -20,6 +20,6 @@ cmake .. -D PATH=path-to-src -D CMAKE_BUILD_TYPE=Release
 make
 ```
 
-где `path-to-src` может быть одним из двух: `examples/interactive_scene_example.cpp` или `examples/rotating_scene_example.cpp`.
+где `path-to-src` может быть, например, `examples/interactive_scene_example.cpp`.
 
 Сборка может потребовать установки следующих библиотек: freetype, x11, xrandr, udev, opengl, flac, ogg, vorbis, vorbisenc, vorbisfile, openal, pthread.

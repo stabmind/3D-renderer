@@ -9,11 +9,9 @@
 namespace application {
 
 class Screen {
-public:
-  using SpaceCoordsType = renderer_types::SpaceCoordsType;
+ public:
   using ScreenCoordsType = int;
   using SizeType = size_t;
-  using ColorType = renderer_types::ColorType;
 
   Screen() = default;
   Screen(SizeType w, SizeType h);
@@ -24,9 +22,6 @@ public:
                 sf::Uint8 red, sf::Uint8 green, sf::Uint8 blue,
                 sf::Uint8 alpha = 255);
 
-  void BlockPixel(ScreenCoordsType i, ScreenCoordsType j);
-  bool isBlockedPixel(ScreenCoordsType i, ScreenCoordsType j) const;
-
   SpaceCoordsType getZ(ScreenCoordsType i, ScreenCoordsType j) const;
   ColorType getColor(ScreenCoordsType i, ScreenCoordsType j) const;
   SizeType getW(void) const;
@@ -34,9 +29,12 @@ public:
 
   void clear(void);
 
-private:
+ private:
   ScreenCoordsType getIndex(ScreenCoordsType i, ScreenCoordsType j) const;
   bool isCorrectPixel(ScreenCoordsType i, ScreenCoordsType j) const;
+
+  void BlockPixel(ScreenCoordsType i, ScreenCoordsType j);
+  bool isBlockedPixel(ScreenCoordsType i, ScreenCoordsType j) const;
 
   static const SpaceCoordsType kMaxZValue_;
 
@@ -46,6 +44,8 @@ private:
   std::vector<ColorType> c_buffer_;
 
   std::vector<int> blocked_;
+
+  friend class Renderer;
 };
 
-} // namespace application
+}  // namespace application

@@ -2,12 +2,12 @@
 
 #include "SFML/Graphics/Color.hpp"
 
-#include <assert.h>
+#include <cassert>
 #include <vector>
 
 namespace application {
 
-const Screen::SpaceCoordsType Screen::kMaxZValue_ = 1;
+const SpaceCoordsType Screen::kMaxZValue_ = 1;
 
 Screen::Screen(SizeType w, SizeType h) { setScreen(w, h); }
 
@@ -15,9 +15,7 @@ void Screen::setScreen(SizeType w, SizeType h) {
   pixel_count_ = w * h;
   w_ = w;
   h_ = h;
-  z_buffer_.assign(pixel_count_, kMaxZValue_);
-  c_buffer_.assign(pixel_count_, ColorType::Black);
-  blocked_.assign(pixel_count_, false);
+  clear();
 }
 
 void Screen::setPixel(ScreenCoordsType i, ScreenCoordsType j, SpaceCoordsType z,
@@ -31,23 +29,13 @@ void Screen::setPixel(ScreenCoordsType i, ScreenCoordsType j, SpaceCoordsType z,
   c_buffer_[index] = ColorType(red, green, blue, alpha);
 }
 
-void Screen::BlockPixel(ScreenCoordsType i, ScreenCoordsType j) {
-  blocked_[getIndex(i, j)] = true;
-}
-
-bool Screen::isBlockedPixel(ScreenCoordsType i, ScreenCoordsType j) const {
-  return blocked_[getIndex(i, j)];
-}
-
-Screen::SpaceCoordsType Screen::getZ(ScreenCoordsType i,
-                                     ScreenCoordsType j) const {
+SpaceCoordsType Screen::getZ(ScreenCoordsType i, ScreenCoordsType j) const {
   assert(isCorrectPixel(i, j) &&
          "(i, j) does not belong to [0, h - 1]x[0, w - 1]");
   return z_buffer_[getIndex(i, j)];
 }
 
-Screen::ColorType Screen::getColor(ScreenCoordsType i,
-                                   ScreenCoordsType j) const {
+ColorType Screen::getColor(ScreenCoordsType i, ScreenCoordsType j) const {
   assert(isCorrectPixel(i, j) &&
          "(i, j) does not belong to [0, h - 1]x[0, w - 1]");
   return c_buffer_[getIndex(i, j)];
@@ -72,4 +60,12 @@ bool Screen::isCorrectPixel(ScreenCoordsType i, ScreenCoordsType j) const {
   return i >= 0 && j >= 0 && i < h_ && j < w_;
 }
 
-} // namespace application
+void Screen::BlockPixel(ScreenCoordsType i, ScreenCoordsType j) {
+  blocked_[getIndex(i, j)] = true;
+}
+
+bool Screen::isBlockedPixel(ScreenCoordsType i, ScreenCoordsType j) const {
+  return blocked_[getIndex(i, j)];
+}
+
+}  // namespace application

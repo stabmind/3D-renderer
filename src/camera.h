@@ -7,8 +7,7 @@
 namespace application {
 
 class Camera {
-public:
-  using SpaceCoordsType = renderer_types::SpaceCoordsType;
+ public:
   using AngleType = double;
   using BorderType = SpaceCoordsType;
 
@@ -24,8 +23,8 @@ public:
   void setFrustum(BorderType l, BorderType r, BorderType b, BorderType t,
                   BorderType n, BorderType f);
 
-  void Rotate(const Eigen::Vector3d &v, AngleType angle);
-  void Shift(const Eigen::Vector3d &h);
+  void Rotate(const Vector3d &v, AngleType angle);
+  void Shift(const Vector3d &h);
 
   void Roll(AngleType angle);
   void Pitch(AngleType angle);
@@ -48,19 +47,19 @@ public:
   BorderType getN(void) const;
   BorderType getF(void) const;
 
-private:
+ private:
   void CreateViewMatrix(void);
   void CreateProjectionMatrix(void);
 
-  Eigen::Vector3d camera_position_;
-  Eigen::Vector3d camera_direction_;
+  Vector3d camera_position_;
+  Vector3d camera_direction_;
   BorderType l_, r_, b_, t_, n_, f_;
-  Eigen::Vector3d pivot_;
+  Vector3d pivot_;
 
   Eigen::Matrix4d view_matrix_;
   Eigen::Matrix4d projection_matrix_;
 
-  Eigen::Vector3d e1_, e2_, e3_;
+  Vector3d e1_, e2_, e3_;
 };
 
-} // namespace application
+}  // namespace application

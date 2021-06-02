@@ -30,7 +30,7 @@ void Camera::setDirection(SpaceCoordsType x, SpaceCoordsType y,
 }
 
 void Camera::setPivot(SpaceCoordsType x, SpaceCoordsType y, SpaceCoordsType z) {
-  pivot_ = Eigen::Vector3d(x, y, z);
+  pivot_ = Vector3d(x, y, z);
   e1_ = camera_direction_.cross(pivot_).normalized();
   e2_ = -camera_direction_.cross(e1_).normalized();
   e3_ = -camera_direction_.normalized();
@@ -45,8 +45,8 @@ void Camera::setFrustum(BorderType l, BorderType r, BorderType b, BorderType t,
   CreateProjectionMatrix();
 }
 
-void Camera::Rotate(const Eigen::Vector3d &v, AngleType angle) {
-  Eigen::Vector3d u = v.normalized();
+void Camera::Rotate(const Vector3d &v, AngleType angle) {
+  Vector3d u = v.normalized();
   Eigen::Matrix3d m;
 
   AngleType c = std::cos(angle);
@@ -68,7 +68,7 @@ void Camera::Rotate(const Eigen::Vector3d &v, AngleType angle) {
   CreateViewMatrix();
 }
 
-void Camera::Shift(const Eigen::Vector3d &h) {
+void Camera::Shift(const Vector3d &h) {
   camera_position_ += h;
   CreateViewMatrix();
 }
@@ -116,9 +116,9 @@ Camera::BorderType Camera::getB() const { return b_; }
 
 Camera::BorderType Camera::getT() const { return t_; }
 
-Camera::BorderType Camera::getN(void) const { return n_; }
+Camera::BorderType Camera::getN() const { return n_; }
 
-Camera::BorderType Camera::getF(void) const { return f_; }
+Camera::BorderType Camera::getF() const { return f_; }
 
 void Camera::CreateViewMatrix() {
   Eigen::Matrix3d C;
@@ -143,4 +143,4 @@ void Camera::CreateProjectionMatrix() {
   // clang-format on
 }
 
-} // namespace application
+}  // namespace application

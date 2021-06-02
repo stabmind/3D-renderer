@@ -7,7 +7,7 @@
 namespace application {
 
 class World {
-public:
+ public:
   using TriangleVec = std::vector<Triangle>;
 
   World() = default;
@@ -21,8 +21,8 @@ public:
   TriangleVec::iterator end();
   TriangleVec::const_iterator end() const;
 
-private:
+ private:
   TriangleVec triangles_;
 };
 
-} // namespace application
+}  // namespace application

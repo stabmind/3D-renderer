@@ -38,6 +38,16 @@ void Application::setCamera(SpaceCoordsType x1, SpaceCoordsType y1,
   camera_.setCamera(x1, y1, z1, x2, y2, z2);
 }
 
+void Application::setCameraPosition(SpaceCoordsType x, SpaceCoordsType y,
+                                    SpaceCoordsType z) {
+  camera_.setPosition(x, y, z);
+}
+
+void Application::setCameraDirection(SpaceCoordsType x, SpaceCoordsType y,
+                                     SpaceCoordsType z) {
+  camera_.setDirection(x, y, z);
+}
+
 void Application::setPivot(SpaceCoordsType x, SpaceCoordsType y,
                            SpaceCoordsType z) {
   camera_.setPivot(x, y, z);
