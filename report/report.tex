@@ -22,6 +22,8 @@
 %\setcounter{tocdepth}{4}
 %\setcounter{secnumdepth}{4}
 
+\graphicspath{{images/}}  	% Папка с картинками
+
 % Здесь задаем параметры титульной страницы
 \setUDK{}
 % Выбрать одно из двух
@@ -175,7 +177,7 @@
 Итоговые треугольники проходят процесс растеризации, а затем готовое изображение отображается на экране монитора.
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.35]{images/pipeline.png}}
+    \center{\includegraphics[scale=0.35]{pipeline.png}}
     \caption{Pipeline. Там, где происходят преобразования из одной системы координат в другую, сверху подписано преобразование, а снизу --- матрица при помощи которой оно происходит.}
     \label{pipeline}
 \end{figure}
@@ -222,7 +224,7 @@
 \end{gather*}
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/barycent.png}}
+    \center{\includegraphics[scale=0.5]{barycent.png}}
     \caption{Разбиение треугольника для вычисления барицентрических координат вершины $u$.}
     \label{barycent}
 \end{figure}
@@ -244,7 +246,7 @@
 Конструкция же называется \emph{пирамидой зрения} (рис. \ref{view frustum}).
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/view frustum.png}}
+    \center{\includegraphics[scale=0.5]{view frustum.png}}
     \caption{Пирамида зрения.}
     \label{view frustum}
 \end{figure}
@@ -267,7 +269,7 @@
 \end{equation*}
 
 \begin{figure}[ht]
-	\center{\includegraphics[scale=0.5]{images/rotation.png}}
+	\center{\includegraphics[scale=0.5]{rotation.png}}
 	\caption{Поворот точки $v$ относительно единичного вектора $\vec{u}$ на угол $\theta$ по часовой стрелке.}
 	\label{rotation}
 \end{figure}
@@ -300,7 +302,7 @@
 Тогда пример такой системы будет изображён на рисунке \ref{camera axes}.
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/camera axes.png}}
+    \center{\includegraphics[scale=0.5]{camera axes.png}}
     \caption{Пример новой системы координат относительно камеры. \\ Векторы $e'_{1}$, $e'_{2}$ и $e'_{3}$ задают новые оси $x$, $y$ и $z$ соответственно.}
     \label{camera axes}
 \end{figure}
@@ -379,7 +381,7 @@
 Пример возможного результата клиппинга изображён на рисунке \ref{clipping}.
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/clipping.png}}
+    \center{\includegraphics[scale=0.5]{clipping.png}}
     \caption{Возможный результат клиппинга. \\
     		 Красные вершины добавляются на первом этапе, зелёные --- на втором, фиолетовые --- на третьем. \\
     		 На четвёртом этапе происходит триангуляция: выбирается фиолетовая закрашенная вершина и проводятся оранжевые рёбра.}
@@ -393,7 +395,7 @@
 Пусть левый нижний угол экрана имеет координаты $(l, b, -n)$, правый верхний --- $(r, t, -n)$ (рис. \ref{camera space}).
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/camera space.png}}
+    \center{\includegraphics[scale=0.5]{camera space.png}}
     \caption{Пространство камеры.}
     \label{camera space}
 \end{figure}
@@ -402,7 +404,7 @@
 Полученные координаты интерпретируются следующим образом: $x$ и $y$ задают нормированное положение на экране, а $z$ является глубиной, которая потом используется для отрисовки пикселей на растровом экране.
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/perspective projection.png}}
+    \center{\includegraphics[scale=0.5]{perspective projection.png}}
     \caption{Перспективное преобразование.}
     \label{perspective projection}
 \end{figure}
@@ -453,7 +455,7 @@
 Откуда вытекает следующий факт: для каждого $i$ такого что $i_{1} \le i \le i_{2}$ существует только один закрашенный пиксель с координатами $(i, j)$ для некоторого $j$ (отрезок $AB$ на рис. \ref{rasterized line}).
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/rasterized line.png}}
+    \center{\includegraphics[scale=0.5]{rasterized line.png}}
     \caption{Пример отрисовки прямых на растровом экране.}
     \label{rasterized line}
 \end{figure}
@@ -479,7 +481,7 @@
 Идея следующая: сначала отрисуем его стороны, а затем будем просто идти снизу вверх внутри ограничивающего его прямоугольника и отрисовывать точно таким же образом отрезки, концами которых будут точки пересечения соответствующих горизонтальных прямых с треугольником (рис. \ref{triangle rasterization}).
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/triangle rasterization.png}}
+    \center{\includegraphics[scale=0.5]{triangle rasterization.png}}
     \caption{Итерация отрисовки треугольника.}
     \label{triangle rasterization}
 \end{figure}
@@ -546,7 +548,7 @@
 На рисунке \ref{architecture} изображено визуальное представление описанного выше взаимодействия.
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.4]{images/architecture.png}}
+    \center{\includegraphics[scale=0.4]{architecture.png}}
     \caption{Архитектура проекта. Точки оранжевого цвета отмечают классы, которые в явном виде хранит основной класс, а точки фиолетового цвета --- методы, необходимые для функционирования всей системы.}
     \label{architecture}
 \end{figure}
@@ -667,7 +669,7 @@
 Результаты приведены в таблице \ref{testing results}.
 
 \begin{figure}[ht]
-    \center{\includegraphics[scale=0.5]{images/rendered models.png}}
+    \center{\includegraphics[scale=0.5]{rendered models.png}}
     \caption{Куб и горы. \\ На рисунках изображены куб и горы --- вдали и вблизи соответственно. }
     \label{rendered models}
 \end{figure}

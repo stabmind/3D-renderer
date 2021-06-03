@@ -15,6 +15,13 @@
 *.cb2
 .*.lb
 
+# beamer
+*.nav
+*.pre
+*.snm
+*.vrb
+*.xdv
+
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
