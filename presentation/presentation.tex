@@ -24,8 +24,11 @@
 
 \usepackage{animate}
 \usepackage{listings}
-
 \usepackage{multicol} 		% Несколько колонок
+\usepackage{multirow}		% Несколько рядов
+\usepackage{graphicx}		% images
+\usepackage[justification=centering]{caption}
+
 \graphicspath{{images/}}  	% Папка с картинками
 
 %%% Информация об авторе и выступлении
@@ -49,8 +52,10 @@
 	\item Изучение соответствующей литературы. \pause
 	\item Краткое изложение всей необходимой теории. \pause
 	\item Тестирование написанного кода на производительность. \pause
-	\item Написание сопроводительной документации.
+	\item Написание сопроводительной документации. \pause
 \end{itemize}
+
+Репозиторий проекта: \url{https://github.com/stabmind/3D-renderer}
 
 \end{frame}
 
@@ -69,6 +74,8 @@
 
 \begin{frame}
 \frametitle{Архитектура}
+
+Сторонние библиотеки: SFML, Eigen. \pause
 
 Библиотечные классы:
 \begin{itemize}
@@ -92,6 +99,9 @@
 \begin{lstlisting}
 #include "application.h"
 
+// Application contains:
+// World, Camera, Screen, Renderer
+
 int main() {
     /* application preparing */
     app.RunInteractiveScene();
@@ -106,14 +116,13 @@ int main() {
 \lstset{language=C++,
         basicstyle=\ttfamily,
         keywordstyle=\color{red}\ttfamily,
-        commentstyle=\color{gray}\ttfamily
-}
+        commentstyle=\color{gray}\ttfamily}
 
 \begin{lstlisting}
 void RunInteractiveScene() {
     InitWindow();
     while (window is open) {
-        /* scene preparing */
+        /* commands processing  */
         renderer.Render(world, camera, screen);
         Draw();
     }
@@ -124,22 +133,25 @@ void RunInteractiveScene() {
 \begin{frame}
 \frametitle{Примеры работы}
 
-\begin{center}
-	\includegraphics[scale = 0.3]{rendered models.png}
-\end{center}
+\begin{figure}
+    \includegraphics[scale=0.3]{rendered models.png}
+    \caption*{Модели куба и гор с разных ракурсов.}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Результаты тестирования}
 
 \begin{center}
-	\begin{tabular}{|c|c|c|c|c|c|c|} \cline{2-7}
-		\multicolumn{1}{c|}{} & \multicolumn{3}{|c|}{Куб} & \multicolumn{3}{|c|}{Горы} \\ \cline{2-7}
-		\multicolumn{1}{c|}{} & Вдали & Вблизи & Min & Вдали & Вблизи & Min \\ \hline
+	\begin{tabular}{|c|c|c|c|c|c|c|} \hline
+		\multirow{3}{*}{Разрешение}
+		& \multicolumn{6}{|c|}{FPS} \\ \cline{2-7}
+		& \multicolumn{3}{|c|}{Куб} & \multicolumn{3}{|c|}{Горы} \\ \cline{2-7}
+		& Вдали & Вблизи & Min & Вдали & Вблизи & Min \\ \hline
 		$640 \times 480$ & 70 & 60 & 21 & 60 & 38 & 13 \\ \hline
 		$1280 \times 720$ & 28 & 21 & 11 & 25 & 14 & 7 \\ \hline
 		$1920 \times 1080$ & 10 & 8 & 5 & 10 & 6 & 3 \\ \hline
-\end{tabular}
+	\end{tabular}
 \end{center}
 
 Процессор: Intel(R) Core(TM) i3-6100U CPU @ 2.30GHz.

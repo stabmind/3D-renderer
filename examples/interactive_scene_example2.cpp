@@ -233,7 +233,7 @@ int main() {
   app.setPivot(0, 0, 1);
   app.setFrustum(-1, 1, -1, 1, 1, 1000);
 
-  app.setScreen(640, 480);
+  app.setScreen(800, 600);
 
   // app.setWireframeVisible(true);
   app.setFPSVisible(true);
